@@ -51,18 +51,18 @@ void printFigure(int figure, FILE* file)
 
 void fillChessboard(int chessboard[8][8])
 {
-    // Zapolnenie pustogo polya
+    // Заполняем пустотой поле
     for (int n = 0; n < 8; n++) {
         for (int m = 0; m < 8; m++) {
             chessboard[n][m] = -1;
         }
     }
-    // Zapolnenie peshok
+    // Заполняем пешки
     for (int i = 0; i < 8; i++) {
         chessboard[1][i] = 10;
         chessboard[6][i] = 0;
     }
-    // Zapolnenie figur
+    // Заполняем фигуры
     for (int i = 0; i < 8; i++) {
         chessboard[0][i] = black_figures[i];
         chessboard[7][i] = white_figures[i];
@@ -73,14 +73,17 @@ void printChessboard(int chessboard[8][8])
 {
     FILE* html_file;
     html_file = fopen("result.html", "w+");
-    fprintf(html_file, "<html><body>");
+    fprintf(html_file, "<html><body><table border='1'>");
     for (int n = 0; n < 8; n++) {
+        fprintf(html_file, "<tr>");
         for (int m = 0; m < 8; m++) {
+            fprintf(html_file, "<td height='21'>");
             printFigure(chessboard[n][m], html_file);
+            fprintf(html_file, "</td>");
         }
-        fprintf(html_file, "<br>");
+        fprintf(html_file, "</tr>");
     }
-    fprintf(html_file, "</body></html>");
+    fprintf(html_file, "</table></body></html>");
 }
 
 int main()
